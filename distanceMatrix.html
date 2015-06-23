@@ -200,12 +200,12 @@ D_{21} & D_{22} & ... & D_{2p} \\
 ... & ... & ... & ... \\
 D_{p1} & D_{p2} & ... & D_{pp} 
 \end{array}\right]
-$$<p><strong>The distributed implementation will consist in computing $D_{ij}$ in parallel</strong>.</p>
+$$<p><strong>The distributed implementation will consist in computing $D_{kl}$ in parallel</strong>.</p>
 <ul>
 <li><strong>Stage 1</strong>: Mapping. Partition $X$ in $p$ blocks. Key is the partition id, value is $X_k$, $1 \le k \le p$.</li>
 <li><strong>Stage 2</strong>: Mapping. For each block $X_k$, replicate the block $p$ times. Key is the pair $(k,l)$, $1 \le l \le p$, value is $X_k$.</li>
 <li><strong>Stage 3</strong>: Group by. Groups $X_k$ and $X_l$ for each pair $(k,l)$. Key is the pair $(k,l)$, value is the pair $(X_k,X_l)$ if $k \ne l$, or the singleton ($X_k$) if $k=l$.</li>
-<li><strong>Stage 4</strong>: Reduce. For each pair $(k,l)$, compute block distance matrix $D_{kj}$.</li>
+<li><strong>Stage 4</strong>: Reduce. For each pair $(k,l)$, compute block distance matrix $D_{kl}$.</li>
 </ul>
 <h3 id="Spark-implementation-(Python)">Spark implementation (Python)<a class="anchor-link" href="#Spark-implementation-(Python)">&#182;</a></h3><p>In the following the distance function is the Pearson correlation.</p>
 <h4 id="Context-initialization">Context initialization<a class="anchor-link" href="#Context-initialization">&#182;</a></h4>
